@@ -37,7 +37,7 @@ public class BookController {
             @RequestParam(value = "rows", required = false) String rows,
             @RequestParam(value = "success", required = false) String success,
             Book book, HttpServletResponse response) throws Exception {
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         if (page != null && rows != null) {
             PageBean pageBean = new PageBean(Integer.parseInt(page),
                     Integer.parseInt(rows));

@@ -9,33 +9,36 @@ import com.ssm.maven.core.util.StringUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
+/**
+ * @author fstar
+ */
 @Controller
 @RequestMapping("/article")
 public class ArticleController {
-	@Resource
+	@Autowired
 	private ArticleService articleService;
 	private static final long serialVersionUID = 1L;
-	private static final Logger log = Logger.getLogger(ArticleController.class);// 日志文件
+
+	private static final Logger log = Logger.getLogger(ArticleController.class);
 
 	/**
 	 * 查找相应的数据集合
 	 * 
-	 * @param page
-	 * @param rows
+	 * @param page 页面编号
+	 * @param rows 取行数
 	 * @param article
 	 * @param response
-	 * @return
 	 * @throws Exception
 	 */
 	@RequestMapping("/list")
@@ -43,7 +46,7 @@ public class ArticleController {
 			@RequestParam(value = "page", required = false) String page,
 			@RequestParam(value = "rows", required = false) String rows,
 			Article article, HttpServletResponse response) throws Exception {
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<>();
 		if (page != null && rows != null) {
 			PageBean pageBean = new PageBean(Integer.parseInt(page),
 					Integer.parseInt(rows));
