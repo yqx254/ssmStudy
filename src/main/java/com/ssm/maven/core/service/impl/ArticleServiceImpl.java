@@ -9,10 +9,13 @@ import com.ssm.maven.core.entity.Article;
 import com.ssm.maven.core.service.ArticleService;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 
 @Service("articleService")
 public class ArticleServiceImpl implements ArticleService {
 
+    @Resource
     private ArticleDao articleDao;
 
     @Override
