@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.maven.core.dao.EmployeeDao">
+    <resultMap id="EmployeeResult" type="Employee">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="mobile" column="mobile"/>
+        <result property="isPartyMember" column="is_party_member"/>
+        <result property="isMarried" column="is_married"/>
+        <result property="position" column="position"/>
+        <result property="joinAt" column="join_at"/>
+        <result property="nationality" column="nationality"/>
+        <result property="profession" column="profession"/>
+        <result property="remarks" column="remarks"/>
+        <result property="deleteFlag" column="delete_flag"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="updatedAt" column="updated_at"/>
+    </resultMap>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="mappers.EmployeeMapper"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+    <select id="findEmployee" parameterType="Map" resultMap="EmployeeResult">
+        SELECT * FROM ssm_employee;
+    </select>
+    <select id="getTotalEmployee" parameterType="Map" resultMap="Long">
+        SELECT COUNT(*) FROM ssm_employee;
+    </select>
+    <select id="findEmployeeById" parameterType="String" resultMap="EmployeeResult">
+        SELECT * FROM ssm_employee WHERE id = #{id};
+    </select>
+</mapper>
