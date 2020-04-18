@@ -29,7 +29,7 @@ public class BookController {
     @Resource
     private BookService bookService;
     private static final long serialVersionUID = 1L;
-    private static final Logger log = Logger.getLogger(BookController.class);// 日志文件
+    private static final Logger log = Logger.getLogger(BookController.class);
 
     @RequestMapping("/listAll")
     public String listAll(
