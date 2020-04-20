@@ -625,21 +625,21 @@ VALUES
 	(87,'ads','36b74e397832402c57934da8c172fd83','普通管理员');
 
 CREATE TABLE `ssm_employee` (
-                                `id` int NOT NULL AUTO_INCREMENT COMMENT '员工表id',
-                                `name` varchar(63) DEFAULT NULL COMMENT '员工姓名',
-                                `mobile` varchar(63) DEFAULT NULL COMMENT '手机号',
-                                `is_party_member` tinyint DEFAULT NULL COMMENT '是否党员',
-                                `is_married` tinyint DEFAULT NULL COMMENT '婚否 0：未婚 1：已婚',
-                                `position` varchar(63) DEFAULT NULL COMMENT '职位',
-                                `join_at` int DEFAULT NULL COMMENT '加入时间（时间戳）',
-                                `nationality` varchar(63) DEFAULT NULL COMMENT '民族',
-                                `profession` varchar(63) DEFAULT NULL COMMENT '专业',
-                                `remarks` text COMMENT '备注',
-                                `delete_flag` tinyint NOT NULL DEFAULT '0' COMMENT '删除标记0：正常 1：回收站 2：删除',
-                                `created_at` int DEFAULT NULL COMMENT '创建时间',
-                                `updated_at` int DEFAULT NULL COMMENT '更新时间',
-                                `deleted_at` int DEFAULT NULL COMMENT '删除时间',
-                                PRIMARY KEY (`id`)
+      `id` int NOT NULL AUTO_INCREMENT COMMENT ''员工表id'',
+      `name` varchar(63) DEFAULT NULL COMMENT ''员工姓名'',
+      `mobile` varchar(63) DEFAULT NULL COMMENT ''手机号'',
+      `is_party_member` tinyint DEFAULT NULL COMMENT ''是否党员'',
+      `is_married` tinyint DEFAULT NULL COMMENT ''婚否 0：未婚 1：已婚'',
+      `position` varchar(63) DEFAULT NULL COMMENT ''职位'',
+      `join_at` int DEFAULT NULL COMMENT ''加入时间（时间戳）'',
+      `nationality` varchar(63) DEFAULT NULL COMMENT ''民族'',
+      `profession` varchar(63) DEFAULT NULL COMMENT ''专业'',
+      `remarks` text COMMENT ''备注'',
+      `delete_flag` tinyint NOT NULL DEFAULT ''0'' COMMENT ''删除标记0：正常 1：回收站 2：删除'',
+      `created_at` int DEFAULT NULL COMMENT ''创建时间'',
+      `updated_at` int DEFAULT NULL COMMENT ''更新时间'',
+      `deleted_at` int DEFAULT NULL COMMENT ''删除时间'',
+      PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*!40000 ALTER TABLE `ssm_user` ENABLE KEYS */;

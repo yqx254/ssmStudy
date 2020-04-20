@@ -131,8 +131,6 @@ public class ArticleController {
 	public String findById(@RequestParam(value = "id") String id,
 			HttpServletResponse response) throws Exception {
 		Article article = articleService.findById(id);
-		log.info(article.toString());
-		log.info("show me the log biatch");
 		JSONObject jsonObject = JSONObject.fromObject(article);
 		ResponseUtil.write(response, jsonObject);
 		log.info("request: article/findById");
