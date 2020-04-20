@@ -5,6 +5,7 @@ import com.ssm.maven.core.entity.PageBean;
 import com.ssm.maven.core.service.EmployeeService;
 import com.ssm.maven.core.util.ResponseUtil;
 import com.ssm.maven.core.util.StringUtil;
+import net.sf.json.JSON;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.stereotype.Controller;
@@ -72,5 +73,49 @@ public class EmployeeController {
                 log.info("employee/list query: " + queryMap.toString());
                 return null;
         }
+        @RequestMapping("/total")
+        public String getTotal(
+                @RequestParam(value="page", required = false)String page,
+                @RequestParam(value="size", required =  false)String size,
+                Employee employee,
+                HttpServletResponse response
+        )throws  Exception{
+                Map <String, Object>query = new HashMap<>(64);
+                if(page != null && size != null){
+                        PageBean pageBean = new PageBean(Integer.parseInt(page),
+                                Integer.parseInt(size));
+                        query.put("page",pageBean.getPage());
+                        query.put("size",pageBean.getPageSize());
+                }
+               if(employee.getName() != null &&
+                       !"".equals(employee.getName())){
+                        query.put("name", StringUtil.formatLike(employee.getName()));
+               }
+               if(employee.getIsPartyMember() != -1){
+                       query.put("isPartyMember",employee.getIsPartyMember());
+               }
+               if(employee.getProfession() != null &&
+                 !"".equals(employee.getProfession())){
+                       query.put("profession",StringUtil.formatLike(employee.getProfession()));
+               }
+               if(employee.getPosition() != null &&
+                        !"".equals(employee.getPosition())){
+                       query.put("position", StringUtil.formatLike(employee.getPosition()));
+               }
+               Long total = employeeService.getTotalEmployee(query);
+               JSONObject result = new JSONObject();
+              result.put("total",total);
+              ResponseUtil.write(response,result);
+              return  null;
+        }
 
+        @RequestMapping("/find")
+        public String search(
+                @RequestParam(value="id")int id,
+                HttpServletResponse response
+        )throws  Exception{
+                Employee employee = employeeService.findEmployeeById(String.valueOf(id));
+                ResponseUtil.write(response, JSONObject.fromObject(employee));
+                return null;
+        }
 }
