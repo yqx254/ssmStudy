@@ -27,8 +27,16 @@ public interface EmployeeService extends Serializable {
     /**
      *  就是新增雇员呗
      * @param employee 雇员对象
+     * @return 返回值
      */
-    public void addEmployee(Employee employee);
+    public int addEmployee(Employee employee);
+
+    /**
+     * 就是编辑雇员呗
+     * @param employee 雇员对象
+     * @return 返回值
+     */
+    public int updateEmployee(Employee employee);
 
     /**
      * 就是查找指定雇员呗

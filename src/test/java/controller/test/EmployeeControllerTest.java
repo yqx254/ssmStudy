@@ -1,5 +1,6 @@
 package controller.test;
 
+import com.ssm.maven.core.entity.Employee;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -59,5 +60,28 @@ public class EmployeeControllerTest {
                  .andExpect(status().isOk())
                  .andDo(print())
                  .andReturn();
+    }
+    @Test
+    public void testAdd() throws Exception{
+        Employee employee = new Employee();
+        employee.setName("Guest");
+        employee.setMobile("15812071547");
+        employee.setIsPartyMember(0);
+        employee.setIsMarried(0);
+        employee.setRemarks("hahahaha");
+        mockMvc.perform(MockMvcRequestBuilders
+                    .get("/employee/add")
+                    .requestAttr("employee",employee))
+                .andExpect(status().isOk())
+                .andDo(print());
+    }
+
+
+    public void testUpdate() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders
+                    .get("/employee/update")
+                    .param("employee"))
+                .andExpect(status().isOk())
+                .andDo(print());
     }
 }

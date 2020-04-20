@@ -28,13 +28,22 @@ public interface EmployeeDao extends Serializable {
     /**
      * 新增雇员
      * @param employee 上传的雇员对象
+     * @return int
      */
-    public void addEmployee(Employee employee);
+    public int addEmployee(Employee employee);
 
+    /**
+     * 编辑雇员
+     * @param employee 上传的雇员对象
+     * @return int
+     */
+    public int updateEmployee(Employee employee);
     /**
      * 查找雇员
      * @param id 前端上传的ID
      * @return 查询结果：雇员对象
      */
     public Employee findEmployeeById(String id);
+
+
 }

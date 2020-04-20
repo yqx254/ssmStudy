@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -117,5 +118,40 @@ public class EmployeeController {
                 Employee employee = employeeService.findEmployeeById(String.valueOf(id));
                 ResponseUtil.write(response, JSONObject.fromObject(employee));
                 return null;
+        }
+
+        @RequestMapping("/add")
+    public String add(Employee employee, HttpServletResponse response)throws Exception{
+            //填入创建时间字段
+            Instant instant = Instant.now();
+            employee.setCreatedAt(instant.getEpochSecond());
+            employee.setUpdatedAt(instant.getEpochSecond());
+
+            int resultTotal = 0;
+            resultTotal = employeeService.addEmployee(employee);
+            JSONObject result = new JSONObject();
+            if(resultTotal > 0){
+                result.put("res",true);
+            }
+            else{
+                result.put("res",false);
+            }
+            ResponseUtil.write(response,result);
+            return null;
+        }
+
+        @RequestMapping("/update")
+        public String update(Employee employee, HttpServletResponse response) throws  Exception{
+            int resultTotal = 0;
+            resultTotal = employeeService.updateEmployee(employee);
+            JSONObject result = new JSONObject();
+            if(resultTotal > 0){
+                result.put("res",true);
+            }
+            else{
+                result.put("res",false);
+            }
+            ResponseUtil.write(response,result);
+            return null;
         }
 }

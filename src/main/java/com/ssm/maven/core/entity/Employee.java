@@ -13,13 +13,13 @@ public class Employee implements Serializable {
     private int isPartyMember;
     private int isMarried;
     private String position;
-    private int joinAt;
+    private long joinAt;
     private int nationality;
     private String profession;
     private String remarks;
     private int deleteFlag;
-    private int createdAt;
-    private int updatedAt;
+    private long createdAt;
+    private long updatedAt;
 
     public String getId() {
         return id;
@@ -69,11 +69,11 @@ public class Employee implements Serializable {
         this.remarks = remarks;
     }
 
-    public int getCreatedAt() {
+    public long getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(int createdAt) {
+    public void setCreatedAt(long createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -101,11 +101,11 @@ public class Employee implements Serializable {
         this.isPartyMember = isPartyMember;
     }
 
-    public int getJoinAt() {
+    public long getJoinAt() {
         return joinAt;
     }
 
-    public void setJoinAt(int joinAt) {
+    public void setJoinAt(long joinAt) {
         this.joinAt = joinAt;
     }
 
@@ -117,11 +117,11 @@ public class Employee implements Serializable {
         this.nationality = nationality;
     }
 
-    public int getUpdatedAt() {
+    public long getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(int updatedAt) {
+    public void setUpdatedAt(long updatedAt) {
         this.updatedAt = updatedAt;
     }
 }

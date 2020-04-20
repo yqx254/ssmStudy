@@ -28,4 +28,14 @@
     <select id="findEmployeeById" parameterType="String" resultMap="EmployeeResult">
         SELECT * FROM ssm_employee WHERE id = #{id};
     </select>
+    <insert id="addEmployee" parameterType="Employee">
+        INSERT INTO ssm_employee(name,mobile,is_married,position,join_at,nationality,profession,remarks,delete_flag,
+                                 created_at,updated_at)
+        VALUES(#{name},#{mobile},#{isMarried},#{position},#{joinAt},#{nationality},#{profession},
+                                           #{remarks},#{deleteFlag},#{createdAt},#{updatedAt});
+    </insert>
+    <update id="updateEmployee" parameterType="Employee">
+        UPDATE ssm_employee SET name = #{name}, mobile=#{mobile},is_married=#{isMarried},position=#{position},join_at=#{jointAt},
+                                nationality=#{nationality}, profession=#{profession},remarks=#{remarks},updated_at=#{updated_at}
+    </update>
 </mapper>
