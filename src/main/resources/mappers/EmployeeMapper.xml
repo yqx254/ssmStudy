@@ -20,11 +20,49 @@
     </resultMap>
 
     <select id="findEmployee" parameterType="Map" resultMap="EmployeeResult">
-        SELECT * FROM ssm_employee;
+        SELECT * FROM ssm_employee
+        <where>
+            <if test="name!=null and name !='' ">
+                AND  name LIKE #{name}
+            </if>
+            <if test="mobile != null and mobile != '' ">
+                AND mobile = #{mobile}
+            </if>
+            <if test="isPartyMember!=null and isPartyMember != 0 ">
+                AND  isPartyMember = #{isPartyMember}
+            </if>
+            <if test="position!=null and position !='' ">
+                AND  position LIKE #{position}
+            </if>
+            <if test="profession!=null and profession !='' ">
+                AND profession LIKE #{profession}
+            </if>
+            LIMIT #{start}, #{size}
+        </where>
     </select>
+
     <select id="getTotalEmployee" parameterType="Map" resultType="Long">
-        SELECT COUNT(*) FROM ssm_employee;
+        SELECT COUNT(*) FROM ssm_employee
+        <where>
+            <if test="name!=null and name !='' ">
+                AND  name LIKE #{name}
+            </if>
+            <if test="mobile != null and mobile != '' ">
+                AND mobile = #{mobile}
+            </if>
+            <if test="isPartyMember!=null and isPartyMember != 0 ">
+                AND  is_party_member = #{isPartyMember}
+            </if>
+            <if test="position!=null and position !='' ">
+                AND  position LIKE #{position}
+            </if>
+            <if test="profession!=null and profession !='' ">
+                AND profession LIKE #{profession}
+            </if>
+            LIMIT #{start}, #{size}
+        </where>
     </select>
+
     <select id="findEmployeeById" parameterType="String" resultMap="EmployeeResult">
         SELECT * FROM ssm_employee WHERE id = #{id};
     </select>

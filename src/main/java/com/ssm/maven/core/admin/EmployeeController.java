@@ -42,7 +42,7 @@ public class EmployeeController {
                 if(page != null && size != null){
                         PageBean pageBean = new PageBean(Integer.parseInt(page),
                                 Integer.parseInt(size));
-                        queryMap.put("page", pageBean.getPage());
+                        queryMap.put("start", pageBean.getStart());
                         queryMap.put("size", pageBean.getPageSize());
                 }
                 if(employee.getName() != null &&
@@ -63,6 +63,10 @@ public class EmployeeController {
                         !"".equals(employee.getProfession())){
                         queryMap.put("profession",
                                 StringUtil.formatLike(employee.getProfession()));
+                }
+                if(employee.getMobile() != null &&
+                    !"".equals(employee.getMobile())){
+                    queryMap.put("mobile",employee.getMobile());
                 }
                 List<Employee> employeeList = employeeService.findEmployee(queryMap);
                 Long total = employeeService.getTotalEmployee(queryMap);
@@ -85,7 +89,7 @@ public class EmployeeController {
                 if(page != null && size != null){
                         PageBean pageBean = new PageBean(Integer.parseInt(page),
                                 Integer.parseInt(size));
-                        query.put("page",pageBean.getPage());
+                        query.put("start",pageBean.getStart());
                         query.put("size",pageBean.getPageSize());
                 }
                if(employee.getName() != null &&

@@ -3,6 +3,7 @@ package controller.test;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ssm.maven.core.entity.Employee;
 import net.sf.json.JSONObject;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -44,7 +45,10 @@ public class EmployeeControllerTest {
     @Test
     public void testList() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders
-                        .get("/employee/list"))
+                        .get("/employee/list")
+                        .param("page","1")
+                        .param("size","20")
+                        .param("position","领导"))
                 .andExpect(status().isOk())
                 .andDo(print());
     }
@@ -54,15 +58,18 @@ public class EmployeeControllerTest {
         MockHttpServletRequestBuilder mockHttpServletRequestBuilder =
                 MockMvcRequestBuilders.get("/employee/find")
                         .param("id","1");
-        mockMvc.perform(mockHttpServletRequestBuilder)
+        MvcResult result =mockMvc.perform(mockHttpServletRequestBuilder)
                 .andExpect(status().isOk())
-                .andDo(print());
+                .andDo(print())
+                .andReturn();
     }
     @Test
     public void testCount() throws Exception{
          MvcResult result = mockMvc.perform(MockMvcRequestBuilders
                      .get("/employee/total")
-                     .param("isPartyMember","1"))
+                     .param("page","1")
+                     .param("size","20")
+                     .param("isPartyMember","2"))
                  .andExpect(status().isOk())
                  .andDo(print())
                  .andReturn();
