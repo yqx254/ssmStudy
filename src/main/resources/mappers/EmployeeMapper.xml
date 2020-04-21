@@ -35,7 +35,8 @@
                                            #{remarks},#{deleteFlag},#{createdAt},#{updatedAt});
     </insert>
     <update id="updateEmployee" parameterType="Employee">
-        UPDATE ssm_employee SET name = #{name}, mobile=#{mobile},is_married=#{isMarried},position=#{position},join_at=#{jointAt},
-                                nationality=#{nationality}, profession=#{profession},remarks=#{remarks},updated_at=#{updated_at}
+        UPDATE ssm_employee SET name = #{name}, mobile=#{mobile},is_married=#{isMarried},position=#{position},join_at=#{joinAt},
+                                nationality=#{nationality}, profession=#{profession},remarks=#{remarks},updated_at=#{updatedAt}
+         WHERE id=#{id}
     </update>
 </mapper>

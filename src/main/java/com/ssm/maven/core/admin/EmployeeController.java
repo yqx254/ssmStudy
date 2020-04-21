@@ -142,6 +142,8 @@ public class EmployeeController {
 
         @RequestMapping("/update")
         public String update(Employee employee, HttpServletResponse response) throws  Exception{
+            Instant instant = Instant.now();
+            employee.setUpdatedAt(instant.getEpochSecond());
             int resultTotal = 0;
             resultTotal = employeeService.updateEmployee(employee);
             JSONObject result = new JSONObject();

@@ -1,10 +1,13 @@
 package controller.test;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ssm.maven.core.entity.Employee;
+import net.sf.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -30,9 +33,12 @@ public class EmployeeControllerTest {
 
     private MockMvc mockMvc;
 
+    private ObjectMapper objectMapper;
+
     @Before
     public void init(){
         mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
+        objectMapper = new ObjectMapper();
     }
 
     @Test
@@ -61,26 +67,50 @@ public class EmployeeControllerTest {
                  .andDo(print())
                  .andReturn();
     }
+
     @Test
     public void testAdd() throws Exception{
-        Employee employee = new Employee();
-        employee.setName("Guest");
-        employee.setMobile("15812071547");
-        employee.setIsPartyMember(0);
-        employee.setIsMarried(0);
-        employee.setRemarks("hahahaha");
         mockMvc.perform(MockMvcRequestBuilders
-                    .get("/employee/add")
-                    .requestAttr("employee",employee))
+                .post("/employee/add")
+                .param("name","Guest")
+                .param("mobile","15812071547")
+                .param("is_party_member",String.valueOf(0))
+                .param("is_married", String.valueOf(0))
+                .param("remarks", "Here's your remarks")
+        )
                 .andExpect(status().isOk())
                 .andDo(print());
     }
+//    传json的方法？以后难说有用
+//    public void testAdd() throws Exception{
+//        Employee employee = new Employee();
+//        employee.setName("Guest");
+//        employee.setMobile("15812071547");
+//        employee.setIsPartyMember(0);
+//        employee.setIsMarried(0);
+//        employee.setRemarks("hahahaha");
+//        mockMvc.perform(MockMvcRequestBuilders
+//                    .post("/employee/add")
+//                    .param("method","postByJson")
+//                    .content(objectMapper.writeValueAsString(employee)).contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(status().isOk())
+//                .andDo(print());
+//    }
 
 
+    @Test
     public void testUpdate() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders
-                    .get("/employee/update")
-                    .param("employee"))
+                    .post("/employee/update")
+                    .param("id","6")
+                    .param("name","Host")
+                    .param("mobile","15812071547")
+                    .param("is_party_member",String.valueOf(0))
+                    .param("is_married", String.valueOf(0))
+                    .param("remarks", "Here's my remarks")
+                    .param("position", "小领导")
+                    .param("profession", "职业玩家")
+                    )
                 .andExpect(status().isOk())
                 .andDo(print());
     }
