@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.apache.log4j.Logger;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
@@ -32,16 +33,16 @@ public class EmployeeController {
         private static final Logger log = Logger.getLogger(EmployeeController.class);
         @Resource
         private EmployeeService employeeService;
-        @RequestMapping("/list")
+        @RequestMapping(value="/list", method = RequestMethod.POST)
         public String getList(
                 @RequestParam(value = "page", required = false)String page,
-                @RequestParam(value ="size", required = false)String size,
+                @RequestParam(value ="rows", required = false)String rows,
                 Employee employee,
                 HttpServletResponse response)throws  Exception{
                 Map<String, Object> queryMap = new HashMap<>(64);
-                if(page != null && size != null){
+                if(page != null && rows != null){
                         PageBean pageBean = new PageBean(Integer.parseInt(page),
-                                Integer.parseInt(size));
+                                Integer.parseInt(rows));
                         queryMap.put("start", pageBean.getStart());
                         queryMap.put("size", pageBean.getPageSize());
                 }

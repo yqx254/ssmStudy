@@ -45,9 +45,9 @@ public class EmployeeControllerTest {
     @Test
     public void testList() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders
-                        .get("/employee/list")
+                        .post("/employee/list")
                         .param("page","1")
-                        .param("size","20")
+                        .param("rows","20")
                         .param("position","领导"))
                 .andExpect(status().isOk())
                 .andDo(print());
