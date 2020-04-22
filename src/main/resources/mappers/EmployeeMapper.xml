@@ -22,49 +22,47 @@
     <select id="findEmployee" parameterType="Map" resultMap="EmployeeResult">
         SELECT * FROM ssm_employee
         <where>
-            <if test="name!=null and name !='' ">
-                AND  name LIKE #{name}
-            </if>
-            <if test="mobile != null and mobile != '' ">
-                AND mobile = #{mobile}
+            delete_flag = 0
+            <if test="keyword!=null and keyword !='' ">
+                AND (name LIKE concat('%',#{keyword},'%')  OR  mobile = #{keyword} OR
+                position LIKE concat('%',#{keyword},'%')  OR profession LIKE concat('%',#{keyword},'%') )
             </if>
             <if test="isPartyMember!=null and isPartyMember != 0 ">
                 AND  isPartyMember = #{isPartyMember}
             </if>
-            <if test="position!=null and position !='' ">
-                AND  position LIKE #{position}
-            </if>
-            <if test="profession!=null and profession !='' ">
-                AND profession LIKE #{profession}
-            </if>
-            LIMIT #{start}, #{size}
         </where>
+        <if test="start != null and size != null">
+            LIMIT #{start}, #{size}
+        </if>
     </select>
 
     <select id="getTotalEmployee" parameterType="Map" resultType="Long">
         SELECT COUNT(*) FROM ssm_employee
         <where>
+            delete_flag = 0
             <if test="name!=null and name !='' ">
-                AND  name LIKE #{name}
+                OR  name LIKE #{name}
             </if>
             <if test="mobile != null and mobile != '' ">
-                AND mobile = #{mobile}
+                OR mobile = #{mobile}
             </if>
             <if test="isPartyMember!=null and isPartyMember != 0 ">
-                AND  is_party_member = #{isPartyMember}
+                OR  is_party_member = #{isPartyMember}
             </if>
             <if test="position!=null and position !='' ">
-                AND  position LIKE #{position}
+                OR  position LIKE #{position}
             </if>
             <if test="profession!=null and profession !='' ">
-                AND profession LIKE #{profession}
+                OR profession LIKE #{profession}
             </if>
-            LIMIT #{start}, #{size}
         </where>
+        <if test="name!=null and name !='' ">
+            LIMIT #{start}, #{size}
+        </if>
     </select>
 
     <select id="findEmployeeById" parameterType="String" resultMap="EmployeeResult">
-        SELECT * FROM ssm_employee WHERE id = #{id};
+        SELECT * FROM ssm_employee WHERE id = #{id} AND delete_flag = 0;
     </select>
     <insert id="addEmployee" parameterType="Employee">
         INSERT INTO ssm_employee(name,mobile,is_married,position,join_at,nationality,profession,remarks,delete_flag,
@@ -77,4 +75,9 @@
                                 nationality=#{nationality}, profession=#{profession},remarks=#{remarks},updated_at=#{updatedAt}
          WHERE id=#{id}
     </update>
+
+    <update id="deleteEmployee" parameterType="String">
+        UPDATE ssm_employee SET delete_flag = 2 WHERE id = #{id}
+    </update>
+
 </mapper>
