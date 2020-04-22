@@ -14,12 +14,13 @@ public class Employee implements Serializable {
     private int isMarried;
     private String position;
     private long joinAt;
-    private int nationality;
+    private String nationality;
     private String profession;
     private String remarks;
     private int deleteFlag;
     private long createdAt;
     private long updatedAt;
+    private String keyword;
 
     public String getId() {
         return id;
@@ -109,11 +110,11 @@ public class Employee implements Serializable {
         this.joinAt = joinAt;
     }
 
-    public int getNationality() {
+    public String getNationality() {
         return nationality;
     }
 
-    public void setNationality(int nationality) {
+    public void setNationality(String nationality) {
         this.nationality = nationality;
     }
 
@@ -123,5 +124,13 @@ public class Employee implements Serializable {
 
     public void setUpdatedAt(long updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 }

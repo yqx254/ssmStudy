@@ -44,4 +44,11 @@ public interface EmployeeService extends Serializable {
      * @return 雇员对象
      */
     public Employee findEmployeeById(String id);
+
+    /**
+     * 就是删除雇员呗
+     * @param id 员工编号
+     * @return 操作结果
+     */
+    public int deleteEmployee(String id);
 }

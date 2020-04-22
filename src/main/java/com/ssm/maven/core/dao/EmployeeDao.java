@@ -45,5 +45,11 @@ public interface EmployeeDao extends Serializable {
      */
     public Employee findEmployeeById(String id);
 
+    /**
+     * 删除雇员
+     * @param id 雇员ID
+     * @return 操作结果
+     */
+    public int deleteEmployee(String id);
 
 }

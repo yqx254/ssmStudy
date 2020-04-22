@@ -37,7 +37,7 @@
 <body style="margin:1px;" id="ff">
 <table id="dg" title="员工信息管理" class="easyui-datagrid" pagination="true"
        rownumbers="true" fit="true" data-options="pageSize:10"
-       url="${pageContext.request.contextPath}/employee/list" toolbar="#tb">
+       url="${pageContext.request.contextPath}/employee/list.do" toolbar="#tb">
     <thead data-options="frozen:true">
     <tr>
         <th field="cb" checkbox="true" align="center"></th>
@@ -66,7 +66,7 @@
             iconCls="icon-remove" plain="true">删除</a>
     </div>
     <div>
-        &nbsp;编号：&nbsp;<input type="text" id="id" size="20"
+        &nbsp;关键词：&nbsp;<input type="text" id="keyword" size="20"
                               onkeydown="if(event.keyCode==13) searchEmployee()"/>&nbsp; <a
             href="javascript:searchEmployee()" class="easyui-linkbutton"
             iconCls="icon-search" plain="true">搜索</a>
@@ -128,24 +128,9 @@
 
 <script type="text/javascript">
     var url;
-    function ResetEditor() {
-        UE.getEditor('myEditor', {
-            initialFrameHeight: 480,
-            initialFrameWidth: 660,
-            enableAutoSave: false,
-            elementPathEnabled: false,
-            wordCount: false,
-            /*  toolbars: [
-             [
-             'fontfamily', 'fontsize', 'forecolor', 'backcolor', 'bold', 'italic', 'underline', '|',
-             'link', '|',
-             ]
-             ]  */
-        });
-    }
     function searchEmployee() {
         $("#dg").datagrid('load', {
-            "id": $("#id").val(),
+            "keyword": $("#keyword").val(),
         });
     }
 
@@ -169,7 +154,7 @@
                     if (r) {
                         $
                             .post(
-                                "${pageContext.request.contextPath}/employee/employee.do",
+                                "${pageContext.request.contextPath}/employee/delete.do",
                                 {
                                     ids: ids
                                 },
@@ -192,11 +177,6 @@
     }
 
     function openEmployeeAddDialog() {
-        var html = '<div id="myEditor" name="articleContent"></div>';
-        $('#editor').append(html);
-        ResetEditor(editor);
-        var ue = UE.getEditor('myEditor');
-        ue.setContent("");
         $("#dlg").dialog("open").dialog("setTitle", "添加员工");
         url = "${pageContext.request.contextPath}/employee/add.do";
     }
@@ -225,11 +205,6 @@
         var row = selectedRows[0];
         $("#dlg").dialog("open").dialog("setTitle", "修改信息");
         $('#fm').form('load', row);
-        var html = '<div id="myEditor" name="articleContent"></div>';
-        $('#editor').append(html);
-        ResetEditor(editor);
-        var ue = UE.getEditor('myEditor');
-        ue.setContent(row.articleContent);
         url = "${pageContext.request.contextPath}/employee/update.do?id="
             + row.id;
     }
@@ -239,10 +214,12 @@
     <%--}--%>
 
     function resetValue() {
-        $("#title").val("");
-        $("#addName").val("");
-        $("#container").val("");
-        ResetEditor();
+        $("#name").val("");
+        $("#mobile").val("");
+        $("#position").val("");
+        $("#nationality").val("");
+        $("#profession").val("");
+        $("#remarks").val("");
     }
 
     function closeEmployeeDialog() {

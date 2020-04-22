@@ -46,34 +46,20 @@ public class EmployeeController {
                         queryMap.put("start", pageBean.getStart());
                         queryMap.put("size", pageBean.getPageSize());
                 }
-                if(employee.getName() != null &&
-                        !"".equals(employee.getName())){
-                        queryMap.put("name",
-                                StringUtil.formatLike(employee.getName()));
+                if(employee.getKeyword() != null &&
+                        !"".equals(employee.getKeyword())){
+                        queryMap.put("keyword",employee.getKeyword());
+                        System.out.println(queryMap.toString());
                 }
                 if(employee.getIsPartyMember() != -1){
                         queryMap.put("isPartyMember",
                                 employee.getIsPartyMember());
                 }
-                if(employee.getPosition() != null &&
-                        !"".equals(employee.getPosition())){
-                        queryMap.put("position",
-                                StringUtil.formatLike(employee.getPosition()));
-                }
-                if(employee.getProfession() != null &&
-                        !"".equals(employee.getProfession())){
-                        queryMap.put("profession",
-                                StringUtil.formatLike(employee.getProfession()));
-                }
-                if(employee.getMobile() != null &&
-                    !"".equals(employee.getMobile())){
-                    queryMap.put("mobile",employee.getMobile());
-                }
                 List<Employee> employeeList = employeeService.findEmployee(queryMap);
                 Long total = employeeService.getTotalEmployee(queryMap);
                 JSONObject result = new JSONObject();
                 JSONArray jsonArray = JSONArray.fromObject(employeeList);
-                result.put("result", jsonArray);
+                result.put("rows", jsonArray);
                 result.put("total", total);
                 ResponseUtil.write(response,result);
                 log.info("employee/list query: " + queryMap.toString());
@@ -125,8 +111,10 @@ public class EmployeeController {
                 return null;
         }
 
-        @RequestMapping("/add")
-    public String add(Employee employee, HttpServletResponse response)throws Exception{
+        @RequestMapping(value="/add", method=RequestMethod.POST)
+    public String add(Employee employee,
+                      HttpServletResponse response)
+                throws Exception{
             //填入创建时间字段
             Instant instant = Instant.now();
             employee.setCreatedAt(instant.getEpochSecond());
@@ -159,6 +147,20 @@ public class EmployeeController {
                 result.put("res",false);
             }
             ResponseUtil.write(response,result);
+            return null;
+        }
+
+        @RequestMapping("/delete")
+        public String delete(@RequestParam(value="ids") String ids,
+                             HttpServletResponse response)
+                                throws  Exception{
+            String [] idStr = ids.split(",");
+            for(String s : idStr){
+                employeeService.deleteEmployee(String.valueOf(s));
+            }
+            JSONObject result = new JSONObject();
+            result.put("success",true);
+            ResponseUtil.write(response, result);
             return null;
         }
 }

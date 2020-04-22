@@ -79,11 +79,14 @@ public class EmployeeControllerTest {
     public void testAdd() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders
                 .post("/employee/add")
-                .param("name","Guest")
+                .param("name","小中锋")
                 .param("mobile","15812071547")
-                .param("is_party_member",String.valueOf(0))
-                .param("is_married", String.valueOf(0))
-                .param("remarks", "Here's your remarks")
+                .param("position","战略忽悠局局长")
+                .param("nationality","神族")
+                .param("profession","很专业")
+                .param("remarks", "哈哈哈")
+                .param("isPartyMember","2")
+                .param("isMarried","2")
         )
                 .andExpect(status().isOk())
                 .andDo(print());
