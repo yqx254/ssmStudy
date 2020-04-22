@@ -71,8 +71,8 @@
                                            #{remarks},#{deleteFlag},#{createdAt},#{updatedAt});
     </insert>
     <update id="updateEmployee" parameterType="Employee">
-        UPDATE ssm_employee SET name = #{name}, mobile=#{mobile},is_married=#{isMarried},position=#{position},join_at=#{joinAt},
-                                nationality=#{nationality}, profession=#{profession},remarks=#{remarks},updated_at=#{updatedAt}
+        UPDATE ssm_employee SET name = #{name}, mobile=#{mobile},is_married=#{isMarried},position=#{position},is_party_member=#{isPartyMember},
+                                join_at=#{joinAt},nationality=#{nationality}, profession=#{profession},remarks=#{remarks},updated_at=#{updatedAt}
          WHERE id=#{id}
     </update>
 

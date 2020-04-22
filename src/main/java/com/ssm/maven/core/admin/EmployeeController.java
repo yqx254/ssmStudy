@@ -56,6 +56,20 @@ public class EmployeeController {
                                 employee.getIsPartyMember());
                 }
                 List<Employee> employeeList = employeeService.findEmployee(queryMap);
+                for(Employee emp : employeeList){
+                    if(emp.getIsPartyMember() == 1){
+                        emp.setIsPartyMemberStr("是");
+                    }
+                    else{
+                        emp.setIsPartyMemberStr("不是");
+                    }
+                    if(emp.getIsMarried() == 1){
+                        emp.setIsMarriedStr("已婚");
+                    }
+                    else{
+                        emp.setIsMarriedStr("未婚");
+                    }
+                }
                 Long total = employeeService.getTotalEmployee(queryMap);
                 JSONObject result = new JSONObject();
                 JSONArray jsonArray = JSONArray.fromObject(employeeList);

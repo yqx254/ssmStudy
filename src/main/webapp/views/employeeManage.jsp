@@ -44,8 +44,8 @@
         <th field="id" width="10%" align="center" hidden="true">编号</th>
         <th field="name" width="80" align="center">姓名</th>
         <th field="mobile" width="100" align="center">手机号</th>
-        <th field="isPartyMember" width="75" align="center">是否党员</th>
-        <th field="isMarried" width="60" align="center">婚否</th>
+        <th field="isPartyMemberStr" width="75" align="center">是否党员</th>
+        <th field="isMarriedStr" width="60" align="center">婚否</th>
         <th field="position" width="60" align="center">职位</th>
         <th field="nationality" width="60" align="center">民族</th>
         <th field="profession" width="90" align="center">专业</th>
@@ -89,6 +89,24 @@
                 <td>手机：</td>
                 <td><input type="text" id="mobile" name="mobile"
                            class="easyui-validatebox" required="true"/>
+                </td>
+            </tr>
+            <tr>
+                <td>是否党员：</td>
+                <td>
+                    <select id="isPartyMember" class="easyui-combobox" name="isPartyMember" editable="false">
+                    <option value="0">不是</option>
+                    <option value="1">是</option>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td>婚姻状况：</td>
+                <td>
+                    <select id="isMarried" class="easyui-combobox" name="isMarried" editable="false">
+                        <option value="0">未婚</option>
+                        <option value="1">已婚</option>
+                    </select>
                 </td>
             </tr>
             <tr>
@@ -220,6 +238,7 @@
         $("#nationality").val("");
         $("#profession").val("");
         $("#remarks").val("");
+        $("#isPartyMember").val("");
     }
 
     function closeEmployeeDialog() {

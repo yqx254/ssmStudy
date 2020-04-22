@@ -21,6 +21,8 @@ public class Employee implements Serializable {
     private long createdAt;
     private long updatedAt;
     private String keyword;
+    private String isPartyMemberStr;
+    private String isMarriedStr;
 
     public String getId() {
         return id;
@@ -132,5 +134,21 @@ public class Employee implements Serializable {
 
     public void setKeyword(String keyword) {
         this.keyword = keyword;
+    }
+
+    public void setIsMarriedStr(String isMarriedStr) {
+        this.isMarriedStr = isMarriedStr;
+    }
+
+    public String getIsMarriedStr() {
+        return isMarriedStr;
+    }
+
+    public void setIsPartyMemberStr(String isPartyMemberStr) {
+        this.isPartyMemberStr = isPartyMemberStr;
+    }
+
+    public String getIsPartyMemberStr() {
+        return isPartyMemberStr;
     }
 }
