@@ -6,7 +6,7 @@
     <resultMap id="CustomerResult" type="Customer">
         <result property="id"  column="id"/>
         <result property="name" column="name"/>
-        <result property="require" column="require"/>
+        <result property="require" column="req"/>
         <result property="date" column="date"/>
         <result property="empId" column="emp_id"/>
         <result property="deleteFlag" column="delete_flag"/>
@@ -30,6 +30,7 @@
         </where>
     </select>
     <select id="customerTotal" resultType="Long" parameterType="Map">
+        SELECT COUNT(*) FROM  ssm_customer
         <where>
             delete_flag = 0
         </where>
@@ -42,14 +43,14 @@
     </select>
     <update id="updateCustomer" parameterType="Customer">
         UPDATE ssm_customer SET  name=#{name}, mobile=#{mobile},
-            require=#{require}, date=#{date}, emp_id=#{empId},updated_at=#{updatedAt}
+            req=#{require}, date=#{date}, emp_id=#{empId},updated_at=#{updatedAt}
             <where>
                 id = #{id}
             </where>
     </update>
     <insert id="addCustomer" parameterType="Customer">
-        INSERT INTO ssm(name, mobile, require, date, emp_id,created_at,updated_at)
-         VALUES(#{name}, #{mobile},#{require},#{date},#{emp_id},#{created_at},#{updated_at})
+        INSERT INTO ssm_customer(name, mobile, req, date, emp_id,created_at,updated_at)
+         VALUES(#{name}, #{mobile},#{require},#{date},#{empId},#{createdAt},#{updatedAt})
     </insert>
     <update id = "deleteCustomer" parameterType="String">
         UPDATE ssm_customer SET delete_flag = 2

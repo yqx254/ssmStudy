@@ -10,11 +10,13 @@ public class Customer implements Serializable {
         private String name;
         private String mobile;
         private Long date;
+        private String require;
         private int empId;
         private Long createdAt;
         private Long updatedAt;
         private Long deletedAt;
         private String keyword;
+        private int deleteFlag;
 
     public void setId(String id) {
         this.id = id;
@@ -86,5 +88,21 @@ public class Customer implements Serializable {
 
     public String getKeyword() {
         return keyword;
+    }
+
+    public void setRequire(String require) {
+        this.require = require;
+    }
+
+    public String getRequire() {
+        return require;
+    }
+
+    public void setDeleteFlag(int deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
+
+    public int getDeleteFlag() {
+        return deleteFlag;
     }
 }

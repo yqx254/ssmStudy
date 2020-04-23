@@ -68,12 +68,12 @@
         INSERT INTO ssm_employee(name,mobile,is_married,position,join_at,nationality,profession,remarks,delete_flag,
                                  created_at,updated_at)
         VALUES(#{name},#{mobile},#{isMarried},#{position},#{joinAt},#{nationality},#{profession},
-                                           #{remarks},#{deleteFlag},#{createdAt},#{updatedAt});
+               #{remarks},#{deleteFlag},#{createdAt},#{updatedAt});
     </insert>
     <update id="updateEmployee" parameterType="Employee">
         UPDATE ssm_employee SET name = #{name}, mobile=#{mobile},is_married=#{isMarried},position=#{position},is_party_member=#{isPartyMember},
                                 join_at=#{joinAt},nationality=#{nationality}, profession=#{profession},remarks=#{remarks},updated_at=#{updatedAt}
-         WHERE id=#{id}
+        WHERE id=#{id}
     </update>
 
     <update id="deleteEmployee" parameterType="String">
