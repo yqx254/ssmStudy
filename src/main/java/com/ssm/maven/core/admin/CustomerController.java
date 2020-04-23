@@ -33,7 +33,7 @@ public class CustomerController {
             @RequestParam(value = "page", required = false)String page,
             @RequestParam(value = "rows", required = false)String rows,
             Customer customer, HttpServletResponse response) throws Exception {
-        Map<String,Object> queryMap = new HashMap<>();
+        Map<String,Object> queryMap = new HashMap<>(32);
         if(page != null && rows != null){
             PageBean pageBean = new PageBean(Integer.parseInt(page),
                     Integer.parseInt(rows));
