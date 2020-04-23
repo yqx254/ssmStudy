@@ -642,6 +642,22 @@ CREATE TABLE `ssm_employee` (
       PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `ssm_customer` (
+  `id` tinyint NOT NULL AUTO_INCREMENT COMMENT '顾客表主键',
+  `name` varchar(63) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '顾客姓名',
+  `mobile` varchar(63) DEFAULT NULL COMMENT '客户电话',
+  `require` varchar(255) DEFAULT NULL COMMENT '客户需求',
+  `date` int DEFAULT NULL COMMENT '到店时间',
+  `emp_id` int DEFAULT NULL COMMENT '接待人',
+  `delete_flag` tinyint DEFAULT "0" COMMENT '删除标记',
+  `created_at` int DEFAULT NULL COMMENT '创建时间',
+  `updated_at` int DEFAULT NULL COMMENT '更新时间',
+  `deleted_at` int DEFAULT NULL COMMENT '删除时间',
+  PRIMARY KEY (`id`),
+  KEY `emp_id_idx` (`emp_id`) USING BTREE COMMENT 'empid索引',
+  KEY `mobile_idx` (`mobile`) USING BTREE COMMENT 'mobile索引'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='客户信息表';
+
 /*!40000 ALTER TABLE `ssm_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
