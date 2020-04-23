@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,11 +52,45 @@ public class CustomerController {
         ResponseUtil.write(response,result);
         return null;
     }
-    @RequestMapping("find")
+    @RequestMapping("/find")
     public String findCustomer(@RequestParam(value="id", required=true) String id,
                                HttpServletResponse response) throws Exception{
         Customer  customer = customerService.findCustomer(id);
         ResponseUtil.write(response, JSONObject.fromObject(customer));
+        return null;
+    }
+
+    @RequestMapping("/add")
+    public String addCustomer(Customer customer,
+                              HttpServletResponse response)throws Exception{
+        Instant instant = Instant.now();
+        customer.setCreatedAt(instant.getEpochSecond());
+        customer.setUpdatedAt(instant.getEpochSecond());
+        customerService.addCustomer(customer);
+        JSONObject result = new JSONObject();
+        result.put("res",true);
+        ResponseUtil.write(response,result);
+        return null;
+    }
+
+    @RequestMapping("/update")
+    public String updateCustomer(Customer customer,
+                                 HttpServletResponse response) throws Exception{
+        Instant instant = Instant.now();
+        customer.setUpdatedAt(instant.getEpochSecond());
+        customerService.updateCustomer(customer);
+        JSONObject result = new JSONObject();
+        result.put("res",true);
+        ResponseUtil.write(response,result);
+        return null;
+    }
+    @RequestMapping("/delete")
+    public String deleteCustomer(String id,
+                                 HttpServletResponse response) throws Exception{
+        customerService.deleteCustomer(id);
+        JSONObject result = new JSONObject();
+        result.put("res",true);
+        ResponseUtil.write(response,result);
         return null;
     }
 }
