@@ -54,6 +54,8 @@ public class CustomerController {
     @RequestMapping("find")
     public String findCustomer(@RequestParam(value="id", required=true) String id,
                                HttpServletResponse response) throws Exception{
+        Customer  customer = customerService.findCustomer(id);
+        ResponseUtil.write(response, JSONObject.fromObject(customer));
         return null;
     }
 }
