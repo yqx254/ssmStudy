@@ -4,8 +4,11 @@ import com.ssm.maven.core.util.MD5Util;
 import org.junit.Test;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import com.ssm.maven.core.util.DateUtil;
 
 /**
  * Created by 13 on 2017/3/30.
@@ -53,13 +56,9 @@ public class simpleTest {
 
     @Test
     public void timeTest(){
-        long t = 1587692415L;
-        ZonedDateTime zdt = ZonedDateTime.ofInstant(Instant.ofEpochSecond(t) ,ZoneId.systemDefault());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        System.out.println(formatter.format(zdt));
-        ZonedDateTime zdt2 = LocalDateTime.parse("2020-04-01",DateTimeFormatter.ofPattern("yyyy-MM-dd")).atZone(ZoneId.systemDefault());
-        Instant instant = zdt2.toInstant();
-        System.out.println(instant.getEpochSecond());
+        long ll = 1585670400L;
+        System.out.println(DateUtil.stampToString(1585670400L));
+        System.out.println(DateUtil.stringToStamp("2020-04-01"));
     }
 
 }

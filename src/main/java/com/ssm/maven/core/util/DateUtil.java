@@ -1,5 +1,6 @@
 package com.ssm.maven.core.util;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -32,5 +33,47 @@ public class DateUtil {
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return sdf.format(date);
+    }
+
+    /**
+     * 格式时间转时间戳
+     * @param date 时间
+     * @param format 格式
+     * @return Long 时间戳
+     */
+    public static long stringToStamp(String date, String format){
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
+        long res = 0L;
+        try{
+            Date d = sdf.parse(date);
+            res = d.getTime() / 1000;
+        }
+        catch (ParseException e){
+            return res;
+        }
+        return  res;
+    }
+    /**
+     * 格式时间转时间戳--使用默认格式的重载
+     * @param date 时间
+     * @return Long 时间戳
+     */
+    public static long stringToStamp(String date){
+        return stringToStamp(date,"yyyy-mm-dd");
+    }
+
+    /**
+     * 时间戳转格式时间字符串
+     * @param stamp 时间戳
+     * @param format 格式
+     * @return String 格式化时间
+     */
+    public static String stampToString(long stamp, String format){
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
+        return  sdf.format(new Date(stamp * 1000));
+    }
+
+    public static String stampToString(long stamp){
+        return stampToString(stamp,"yyyy-MM-dd");
     }
 }
