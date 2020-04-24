@@ -53,4 +53,15 @@ public class EmployeeServiceImpl implements EmployeeService {
                 return employeeDao.deleteEmployee(id);
         }
 
+        /**
+         * 查询雇员姓名，一般用于其它模块
+         *
+         * @param id 雇员ID
+         * @return 雇员姓名
+         */
+        @Override
+        public String findEmpName(String id) {
+                return employeeDao.findEmpName(id);
+        }
+
 }

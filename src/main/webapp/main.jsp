@@ -125,6 +125,15 @@
                         data-options="plain:true,iconCls:'icon-wenzhang'"
                         style="width: 150px;"> 员工管理</a>
             </div>
+        <div title="客源维护"
+             data-options="selected:true,iconCls:'icon-shuji'"
+             style="padding: 10px;height:10px;">
+            <a
+                    href="javascript:openTab(' 客户信息','customerManage.jsp','icon-shuben')"
+                    class="easyui-linkbutton"
+                    data-options="plain:true,iconCls:'icon-shuben'"
+                    style="width: 150px;"> 客户信息</a>
+        </div>
         <div title="系统管理" data-options="iconCls:'icon-item'"
              style="padding:10px;border:none;">
             <a href="javascript:openTab(' 管理员列表','userManage.jsp','icon-lxr')"

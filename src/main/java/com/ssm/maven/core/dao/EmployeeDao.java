@@ -52,4 +52,10 @@ public interface EmployeeDao extends Serializable {
      */
     public int deleteEmployee(String id);
 
+    /**
+     *  获取经纪人姓名
+     * @param id 经纪人ID
+     * @return String 经纪人姓名
+     */
+    String findEmpName(String id);
 }

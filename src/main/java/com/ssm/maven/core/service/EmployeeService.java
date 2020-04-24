@@ -51,4 +51,11 @@ public interface EmployeeService extends Serializable {
      * @return 操作结果
      */
     public int deleteEmployee(String id);
+
+    /**
+     * 查询雇员姓名，一般用于其它模块
+     * @param id 雇员ID
+     * @return 雇员姓名
+     */
+    String findEmpName(String id);
 }

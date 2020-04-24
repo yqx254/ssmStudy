@@ -10,8 +10,10 @@ public class Customer implements Serializable {
         private String name;
         private String mobile;
         private Long date;
+        private String dateStr;
         private String require;
         private int empId;
+        private String empName;
         private Long createdAt;
         private Long updatedAt;
         private Long deletedAt;
@@ -104,5 +106,21 @@ public class Customer implements Serializable {
 
     public int getDeleteFlag() {
         return deleteFlag;
+    }
+
+    public void setEmpName(String empName) {
+        this.empName = empName;
+    }
+
+    public String getEmpName() {
+        return empName;
+    }
+
+    public void setDateStr(String dateStr) {
+        this.dateStr = dateStr;
+    }
+
+    public String getDateStr() {
+        return dateStr;
     }
 }
