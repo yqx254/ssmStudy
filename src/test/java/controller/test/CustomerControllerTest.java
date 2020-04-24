@@ -56,4 +56,40 @@ public class CustomerControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
     }
+
+    @Test
+    public void findTest() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders
+                    .get("/customer/find")
+                    .param("id","1"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print());
+    }
+
+    @Test
+    public void updateTest() throws Exception{
+        Instant instant = Instant.now();
+        mockMvc.perform(MockMvcRequestBuilders
+                    .post("/customer/update")
+                    .param("id", "3")
+                    .param("name","Johnny English")
+                    .param("mobile", "1395959898")
+                    .param("require","More toilet paper please!")
+                    .param("date",String.valueOf(instant.getEpochSecond()))
+                    .param("empId","3")
+                    .param("updatedAt", String.valueOf(instant.getEpochSecond()))
+                    )
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print());
+    }
+
+@Test
+public void deleteTest() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders
+                .get("/customer/delete")
+                .param("id","3")
+        )
+        .andExpect(MockMvcResultMatchers.status().isOk())
+        .andDo(MockMvcResultHandlers.print());
+    }
 }
