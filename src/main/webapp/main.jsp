@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -91,15 +92,18 @@
 <div region="west" style="width: 200px;height:500px;" title="导航菜单"
      split="true">
     <div class="easyui-accordion">
-        <div title="文章管理"
+    <c:forEach items="${menu}" var="m" >
+        <div title="${m.title}"
              data-options="selected:true,iconCls:'icon-wenzhangs'"
              style="padding: 10px;height:10px;">
-            <a
-                    href="javascript:openTab(' 文章管理','articleManage.jsp','icon-wenzhang')"
-                    class="easyui-linkbutton"
-                    data-options="plain:true,iconCls:'icon-wenzhang'"
-                    style="width: 150px;"> 文章管理</a>
+<%--            <a--%>
+<%--                    href="javascript:openTab(' 文章管理','articleManage.jsp','icon-wenzhang')"--%>
+<%--                    class="easyui-linkbutton"--%>
+<%--                    data-options="plain:true,iconCls:'icon-wenzhang'"--%>
+<%--                    style="width: 150px;"> 文章管理</a>--%>
         </div>
+    </c:forEach>
+
         <div title="图片管理" data-options="iconCls:'icon-shouye'"
              style="padding:10px">
             <a
