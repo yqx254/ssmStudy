@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ssm.maven.core.service.MenuService;
 import com.ssm.maven.core.util.MD5Util;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -24,6 +25,7 @@ import com.ssm.maven.core.entity.User;
 import com.ssm.maven.core.service.UserService;
 import com.ssm.maven.core.util.ResponseUtil;
 import com.ssm.maven.core.util.StringUtil;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author 1034683568@qq.com
@@ -36,6 +38,8 @@ public class UserController {
 
     @Resource
     private UserService userService;
+    @Resource
+    private MenuService menuService;
     private static final Logger log = Logger.getLogger(UserController.class);// 日志文件
 
     /**
@@ -46,7 +50,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("/login")
-    public String login(User user, HttpServletRequest request) {
+    public ModelAndView login(User user, HttpServletRequest request) {
         try {
             String MD5pwd = MD5Util.MD5Encode(user.getPassword(), "UTF-8");
             user.setPassword(MD5pwd);
@@ -58,12 +62,15 @@ public class UserController {
         if (resultUser == null) {
             request.setAttribute("user", user);
             request.setAttribute("errorMsg", "请认真核对账号、密码！");
-            return "login";
+            return new ModelAndView("/login");
         } else {
             HttpSession session = request.getSession();
             session.setAttribute("currentUser", resultUser);
             MDC.put("userName", user.getUserName());
-            return "redirect:/main.jsp";
+            ModelAndView main = new ModelAndView("redirect:/main.jsp");
+            main.addObject("menu",menuService.getMenuList());
+            log.info(menuService.getMenuList().toString());
+            return main;
         }
     }
 

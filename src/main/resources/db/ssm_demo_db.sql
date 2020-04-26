@@ -658,6 +658,27 @@ CREATE TABLE `ssm_customer` (
   KEY `mobile_idx` (`mobile`) USING BTREE COMMENT 'mobile索引'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='客户信息表';
 
+CREATE TABLE `ssm_menu` (
+  `id` int NOT NULL AUTO_INCREMENT COMMENT '菜单主键',
+  `title` varchar(63) DEFAULT NULL COMMENT '菜单标题',
+  `parent_id` tinyint DEFAULT '0' COMMENT '父结点编号 0：无父节点',
+  `page_url` varchar(255) DEFAULT NULL COMMENT '页面地址',
+  `icon` varchar(63) DEFAULT NULL COMMENT '菜单图标',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='菜单表';
+
+INSERT INTO `ssm`.`ssm_menu`(`id`, `title`, `parent_id`, `page_url`, `icon`) VALUES (1, '文章管理', 0, NULL, 'icon-wenzhangs');
+INSERT INTO `ssm`.`ssm_menu`(`id`, `title`, `parent_id`, `page_url`, `icon`) VALUES (2, '文章管理', 1, 'articleManage.jsp', 'icon-wenzhang');
+INSERT INTO `ssm`.`ssm_menu`(`id`, `title`, `parent_id`, `page_url`, `icon`) VALUES (3, '图片管理', 0, NULL, 'icon-shouye');
+INSERT INTO `ssm`.`ssm_menu`(`id`, `title`, `parent_id`, `page_url`, `icon`) VALUES (4, '图片设置', 3, 'pictureManage.jsp?type=1&grade=1', 'icon-tupian');
+INSERT INTO `ssm`.`ssm_menu`(`id`, `title`, `parent_id`, `page_url`, `icon`) VALUES (5, '书籍管理', 0, NULL, 'icon-shuji');
+INSERT INTO `ssm`.`ssm_menu`(`id`, `title`, `parent_id`, `page_url`, `icon`) VALUES (6, '全部书籍', 5, 'allBooksManage.jsp', 'icon-shuben');
+INSERT INTO `ssm`.`ssm_menu`(`id`, `title`, `parent_id`, `page_url`, `icon`) VALUES (7, '员工管理', 0, '', 'icon-wenzhang');
+INSERT INTO `ssm`.`ssm_menu`(`id`, `title`, `parent_id`, `page_url`, `icon`) VALUES (8, '员工管理', 7, 'employeeManage.jsp', 'icon-wenzhang');
+INSERT INTO `ssm`.`ssm_menu`(`id`, `title`, `parent_id`, `page_url`, `icon`) VALUES (9, '客源管理', 0, 'userManage.jsp', '');
+INSERT INTO `ssm`.`ssm_menu`(`id`, `title`, `parent_id`, `page_url`, `icon`) VALUES (10, '客户信息', 9, 'customerManage.jsp', 'icon-shuben');
+
+
 /*!40000 ALTER TABLE `ssm_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
