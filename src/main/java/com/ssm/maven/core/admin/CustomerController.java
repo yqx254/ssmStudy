@@ -5,10 +5,12 @@ import com.ssm.maven.core.entity.Employee;
 import com.ssm.maven.core.entity.PageBean;
 import com.ssm.maven.core.service.CustomerService;
 import com.ssm.maven.core.service.EmployeeService;
+import com.ssm.maven.core.util.DateUtil;
 import com.ssm.maven.core.util.ResponseUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -77,12 +79,12 @@ public class CustomerController {
     }
 
     @RequestMapping("/add")
-    public String addCustomer(Customer customer,
+    public String addCustomer(@NotNull Customer customer,
                               HttpServletResponse response)throws Exception{
         Instant instant = Instant.now();
         customer.setCreatedAt(instant.getEpochSecond());
         customer.setUpdatedAt(instant.getEpochSecond());
-//        customer.setDate(ZonedDateTime.of(LocalDate));
+        customer.setDate(DateUtil.stringToStamp(customer.getDateStr()));
         customerService.addCustomer(customer);
         JSONObject result = new JSONObject();
         result.put("res",true);
@@ -91,10 +93,12 @@ public class CustomerController {
     }
 
     @RequestMapping("/update")
-    public String updateCustomer(Customer customer,
+    public String updateCustomer(@NotNull Customer customer,
                                  HttpServletResponse response) throws Exception{
         Instant instant = Instant.now();
         customer.setUpdatedAt(instant.getEpochSecond());
+        customer.setDate(DateUtil.stringToStamp(customer.getDateStr()));
+        log.warn("fook u! " + customer.getDate());
         customerService.updateCustomer(customer);
         JSONObject result = new JSONObject();
         result.put("res",true);

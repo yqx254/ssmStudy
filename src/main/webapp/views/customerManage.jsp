@@ -105,7 +105,7 @@
             <tr>
                 <td>到店时间：</td>
                 <td>
-                    <input type="text" id="date" name="date"
+                    <input type="text" id="dateStr" name="dateStr"
                            class="easyui-validatebox" required="true" hidden="true"/>
                     <a href="javascript:saveDate()">
                         <div id="calendar" class="easyui-calendar"
@@ -216,7 +216,7 @@
         $("#name").val("");
         $("#mobile").val("");
         $("#require").val("");
-        $("#date").val("");
+        $("#dateStr").val("");
         $("#empId").val("");
     }
 
@@ -227,7 +227,15 @@
     function saveDate(){
         $('#calendar').calendar({
             onSelect: function(date){
-                $("#date").val(date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate());
+                var month = date.getMonth() + 1;
+                if(month < 10){
+                    month = "0" + String(month);
+                }
+                var day = date.getDate();
+                if(day < 10){
+                    day = "0" + String(day);
+                }
+                $("#dateStr").val(date.getFullYear()+"-"+month+"-"+day);
                 // alert(date.getFullYear()+":"+(date.getMonth()+1)+":"+date.getDate());
         }
         })

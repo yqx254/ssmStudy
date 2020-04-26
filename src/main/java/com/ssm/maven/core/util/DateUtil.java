@@ -2,6 +2,8 @@ package com.ssm.maven.core.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -59,7 +61,7 @@ public class DateUtil {
      * @return Long 时间戳
      */
     public static long stringToStamp(String date){
-        return stringToStamp(date,"yyyy-mm-dd");
+        return stringToStamp(date,"yyyy-MM-dd");
     }
 
     /**
@@ -75,5 +77,19 @@ public class DateUtil {
 
     public static String stampToString(long stamp){
         return stampToString(stamp,"yyyy-MM-dd");
+    }
+
+    public static long stringToStampZonedVersion(String date, String format){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(format);
+        LocalDate ldt = LocalDate.from(dtf.parse(date));
+        ZonedDateTime zdt = ZonedDateTime.of(ldt,LocalTime.of(0,0),ZoneId.systemDefault());
+        return zdt.toEpochSecond();
+    }
+
+    public static String stampToStringZonedVersion(long stamp, String format){
+        Instant instant = Instant.ofEpochSecond(stamp);
+        ZonedDateTime zdt = ZonedDateTime.ofInstant(instant, ZoneId.systemDefault());
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(format);
+        return dtf.format(zdt);
     }
 }

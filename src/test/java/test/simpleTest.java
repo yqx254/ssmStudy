@@ -58,7 +58,11 @@ public class simpleTest {
     public void timeTest(){
         long ll = 1585670400L;
         System.out.println(DateUtil.stampToString(1585670400L));
-        System.out.println(DateUtil.stringToStamp("2020-04-01"));
+        long l2 = DateUtil.stringToStamp("2020-4-3","yyyy-MM-dd");
+        System.out.println(l2);
+
+        System.out.println(DateUtil.stampToStringZonedVersion(l2,"yyyy-MM-dd"));
+        System.out.println(DateUtil.stringToStampZonedVersion("2020-04-03","yyyy-MM-dd"));
     }
 
 }
