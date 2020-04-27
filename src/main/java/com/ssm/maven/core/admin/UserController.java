@@ -63,13 +63,13 @@ public class UserController {
             request.setAttribute("user", user);
             request.setAttribute("errorMsg", "请认真核对账号、密码！");
             return new ModelAndView("/login");
-        } else {
+        }
+        else {
             HttpSession session = request.getSession();
             session.setAttribute("currentUser", resultUser);
             MDC.put("userName", user.getUserName());
-            ModelAndView main = new ModelAndView("redirect:/main.jsp");
-            main.addObject("menu",menuService.getMenuList());
-            log.info(menuService.getMenuList().toString());
+            ModelAndView main = new ModelAndView("main");
+            session.setAttribute("menu",menuService.getMenuList());
             return main;
         }
     }

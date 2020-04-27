@@ -6,6 +6,8 @@ import com.ssm.maven.core.service.MenuService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -16,6 +18,11 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public List<Menu> getMenuList() {
+        List<Menu> mList = menuDao.getMenuList();
+        HashMap<String, Object []>result = new HashMap<>(128);
+        for(Menu menu : mList){
+
+        }
         return  menuDao.getMenuList();
     }
 }

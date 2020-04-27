@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" contentType="text/html; charset=utf-8"
-         pageEncoding="utf-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -69,7 +69,7 @@
         <div title="首页" data-options="iconCls:'icon-home'">
                         <div align="center" style="padding-top: 20px;"><a
                     href="https://git.oschina.net/zhenfeng13/ssm-demo"
-                    target="_blank" style="font-size: 20px;">开源中国仓库地址</a>
+                    target="_blank" style="font-size: 20px;">开源中国仓库地址${name}</a>
             </div>
             <div align="center" style="padding-top: 20px;"><a href="https://github.com/ZHENFENG13/ssm-demo"
                                                               target="_blank"
@@ -103,7 +103,6 @@
 <%--                    style="width: 150px;"> 文章管理</a>--%>
         </div>
     </c:forEach>
-
         <div title="图片管理" data-options="iconCls:'icon-shouye'"
              style="padding:10px">
             <a
@@ -147,9 +146,13 @@
                             class="easyui-linkbutton"
                             data-options="plain:true,iconCls:'icon-exit'"
                             style="width: 150px;">
-            安全退出</a>
+            安全退出${t}</a>
         </div>
     </div>
 </div>
 </body>
 </html>
+<script>
+    var par =${t};
+    console.log(par);//打印'随便写点东西'
+</script>
