@@ -1,5 +1,6 @@
 package com.ssm.maven.core.admin;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ssm.maven.core.entity.Menu;
 import com.ssm.maven.core.service.MenuService;
 import com.ssm.maven.core.util.MD5Util;
 import net.sf.json.JSONArray;
@@ -69,7 +71,16 @@ public class UserController {
             session.setAttribute("currentUser", resultUser);
             MDC.put("userName", user.getUserName());
             ModelAndView main = new ModelAndView("main");
-            session.setAttribute("menu",menuService.getMenuList());
+            List<Menu> menus = menuService.getMenuList();
+            List<Menu> result = new ArrayList<Menu>();
+            for( Menu menu : menus){
+                if("0".equals(menu.getParentId())){
+                    menu.setSub(menus);
+                    result.add(menu);
+                }
+            }
+            session.setAttribute("menu",result);
+            main.setViewName("redirect:/main.jsp");
             return main;
         }
     }

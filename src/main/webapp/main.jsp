@@ -94,49 +94,17 @@
     <div class="easyui-accordion">
     <c:forEach items="${menu}" var="m" >
         <div title="${m.title}"
-             data-options="selected:true,iconCls:'icon-wenzhangs'"
+             data-options="selected:true,iconCls:'${m.icon}'"
              style="padding: 10px;height:10px;">
-<%--            <a--%>
-<%--                    href="javascript:openTab(' 文章管理','articleManage.jsp','icon-wenzhang')"--%>
-<%--                    class="easyui-linkbutton"--%>
-<%--                    data-options="plain:true,iconCls:'icon-wenzhang'"--%>
-<%--                    style="width: 150px;"> 文章管理</a>--%>
+            <c:forEach items="${m.subMenu}" var= "m2">
+            <a
+                    href="javascript:openTab(' ${m2.title}','${m2.pageUrl}','${m2.icon}')"
+                    class="easyui-linkbutton"
+                    data-options="plain:true,iconCls:'icon-wenzhang'"
+                    style="width: 150px;"> ${m2.title}</a>
+            </c:forEach>
         </div>
     </c:forEach>
-        <div title="图片管理" data-options="iconCls:'icon-shouye'"
-             style="padding:10px">
-            <a
-                    href="javascript:openTab(' 图片设置','pictureManage.jsp?type=1&grade=1','icon-tupians')"
-                    class="easyui-linkbutton"
-                    data-options="plain:true,iconCls:'icon-tupian'"
-                    style="width: 150px;"> 图片设置</a>
-        </div>
-        <div title="书籍管理" data-options="iconCls:'icon-shuji'"
-             style="padding:10px">
-            <a
-                    href="javascript:openTab(' 全部书籍','allBooksManage.jsp','icon-shuben')"
-                    class="easyui-linkbutton"
-                    data-options="plain:true,iconCls:'icon-shuben'"
-                    style="width: 150px;">全部书籍</a>
-        </div>
-            <div title="员工管理"
-                 data-options="selected:true,iconCls:'icon-wenzhangs'"
-                 style="padding: 10px;height:10px;">
-                <a
-                        href="javascript:openTab(' 员工管理','employeeManage.jsp','icon-wenzhang')"
-                        class="easyui-linkbutton"
-                        data-options="plain:true,iconCls:'icon-wenzhang'"
-                        style="width: 150px;"> 员工管理</a>
-            </div>
-        <div title="客源维护"
-             data-options="selected:true,iconCls:'icon-shuji'"
-             style="padding: 10px;height:10px;">
-            <a
-                    href="javascript:openTab(' 客户信息','customerManage.jsp','icon-shuben')"
-                    class="easyui-linkbutton"
-                    data-options="plain:true,iconCls:'icon-shuben'"
-                    style="width: 150px;"> 客户信息</a>
-        </div>
         <div title="系统管理" data-options="iconCls:'icon-item'"
              style="padding:10px;border:none;">
             <a href="javascript:openTab(' 管理员列表','userManage.jsp','icon-lxr')"

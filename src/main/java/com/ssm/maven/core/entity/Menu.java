@@ -1,6 +1,8 @@
 package com.ssm.maven.core.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Menu implements Serializable {
     private String id;
@@ -8,7 +10,7 @@ public class Menu implements Serializable {
     private String parentId;
     private String pageUrl;
     private String icon;
-    private Menu [] subMenu;
+    private List<Menu> subMenu = new ArrayList<>(32);
     public void setId(String id) {
         this.id = id;
     }
@@ -49,11 +51,23 @@ public class Menu implements Serializable {
         return pageUrl;
     }
 
-    public void setSubMenu(Menu[] subMenu) {
+    public void setSubMenu(List<Menu> subMenu) {
         this.subMenu = subMenu;
     }
 
-    public Menu[] getSubMenu() {
+    public List<Menu> getSubMenu() {
         return subMenu;
+    }
+
+    public void addSubMenu(Menu menu){
+        subMenu.add(menu);
+    }
+
+    public void setSub(List<Menu> allMenu){
+        for(Menu m : allMenu){
+            if(this.getId().equals(m.getParentId())){
+                this.addSubMenu(m);
+            }
+        }
     }
 }
