@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class MenuServiceImpl implements MenuService {
@@ -19,9 +20,13 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public List<Menu> getMenuList() {
         List<Menu> mList = menuDao.getMenuList();
-        HashMap<String, Object []>result = new HashMap<>(128);
-        for(Menu menu : mList){
 
+        Map<String, Menu []> menuMap = new HashMap<>(64);
+
+        for(Menu menu : mList){
+            if(!"0".equals(menu.getParentId())){
+
+            }
         }
         return  menuDao.getMenuList();
     }

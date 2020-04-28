@@ -8,7 +8,7 @@ public class Menu implements Serializable {
     private String parentId;
     private String pageUrl;
     private String icon;
-
+    private Menu [] subMenu;
     public void setId(String id) {
         this.id = id;
     }
@@ -47,5 +47,13 @@ public class Menu implements Serializable {
 
     public String getPageUrl() {
         return pageUrl;
+    }
+
+    public void setSubMenu(Menu[] subMenu) {
+        this.subMenu = subMenu;
+    }
+
+    public Menu[] getSubMenu() {
+        return subMenu;
     }
 }
