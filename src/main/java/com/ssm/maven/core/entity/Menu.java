@@ -58,16 +58,4 @@ public class Menu implements Serializable {
     public List<Menu> getSubMenu() {
         return subMenu;
     }
-
-    public void addSubMenu(Menu menu){
-        subMenu.add(menu);
-    }
-
-    public void setSub(List<Menu> allMenu){
-        for(Menu m : allMenu){
-            if(this.getId().equals(m.getParentId())){
-                this.addSubMenu(m);
-            }
-        }
-    }
 }

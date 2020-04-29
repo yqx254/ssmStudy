@@ -42,7 +42,7 @@ public class UserController {
     private UserService userService;
     @Resource
     private MenuService menuService;
-    private static final Logger log = Logger.getLogger(UserController.class);// 日志文件
+    private static final Logger log = Logger.getLogger(UserController.class);
 
     /**
      * 登录
@@ -72,14 +72,8 @@ public class UserController {
             MDC.put("userName", user.getUserName());
             ModelAndView main = new ModelAndView("main");
             List<Menu> menus = menuService.getMenuList();
-            List<Menu> result = new ArrayList<Menu>();
-            for( Menu menu : menus){
-                if("0".equals(menu.getParentId())){
-                    menu.setSub(menus);
-                    result.add(menu);
-                }
-            }
-            session.setAttribute("menu",result);
+            log.info(menus.toString());
+            session.setAttribute("menu",menus);
             main.setViewName("redirect:/main.jsp");
             return main;
         }
