@@ -4,6 +4,7 @@ import com.ssm.maven.core.entity.Role;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Administrator
@@ -11,10 +12,17 @@ import java.util.List;
 public interface RoleService extends Serializable {
     /**
      *  get role list
+     * @param query query map
      * @return role list
      */
-    List<Role> roleList();
+    List<Role> roleList(Map<String, Object> query);
 
+    /**
+     *  get role total
+     * @param query query map
+     * @return role count
+     */
+    Long roleTotal(Map<String, Object> query);
     /**
      *  find role by id
      * @param id role id

@@ -678,6 +678,18 @@ INSERT INTO `ssm`.`ssm_menu`(`id`, `title`, `parent_id`, `page_url`, `icon`) VAL
 INSERT INTO `ssm`.`ssm_menu`(`id`, `title`, `parent_id`, `page_url`, `icon`) VALUES (9, '客源管理', 0, 'userManage.jsp', '');
 INSERT INTO `ssm`.`ssm_menu`(`id`, `title`, `parent_id`, `page_url`, `icon`) VALUES (10, '客户信息', 9, 'customerManage.jsp', 'icon-shuben');
 
+CREATE TABLE `ssm_role` (
+                            `role_id` int NOT NULL AUTO_INCREMENT COMMENT '角色表主键',
+                            `role_name` varchar(63) DEFAULT NULL COMMENT '角色名称',
+                            `created_at` int(11) COMMENT '创建时间',
+                            `updated_at` int(11) COMMENT '更新时间',
+                            `delete_flag` tinyint(3)  DEFAULT '0' COMMENT '删除标志位',
+                            `deleted_at` int(11) COMMENT '删除时间',
+                            PRIMARY KEY (`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='菜单表';
+
+INSERT INTO `ssm`.`ssm_role`(`role_id`, `role_name`, `created_at`, `updated_at`, `delete_flag`, `deleted_at`) VALUES (1, '超级管理员', 1, 1, 0, NULL);
+INSERT INTO `ssm`.`ssm_role`(`role_id`, `role_name`, `created_at`, `updated_at`, `delete_flag`, `deleted_at`) VALUES (2, '录文章的', 1, 1, 0, NULL);
 
 /*!40000 ALTER TABLE `ssm_user` ENABLE KEYS */;
 UNLOCK TABLES;

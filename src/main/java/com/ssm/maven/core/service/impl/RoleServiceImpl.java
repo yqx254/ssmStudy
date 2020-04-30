@@ -7,14 +7,30 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
+/**
+ * @author fstar
+ */
 @Service("RoleService")
 public class RoleServiceImpl implements RoleService {
     @Resource
     private RoleDao roleDao;
     @Override
-    public List<Role> roleList() {
-        return roleDao.roleList();
+    public List<Role> roleList(Map<String, Object> query) {
+
+        return roleDao.roleList(query);
+    }
+
+    /**
+     * get role total
+     *
+     * @param query query map
+     * @return role count
+     */
+    @Override
+    public Long roleTotal(Map<String, Object> query) {
+        return roleDao.roleTotal(query);
     }
 
     @Override
