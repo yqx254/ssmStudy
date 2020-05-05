@@ -16,7 +16,8 @@
     </select>
 
     <select id="findUsers" parameterType="Map" resultMap="UserResult">
-        select id,user_name,password,role_name from ssm_user
+        select u.id,u.user_name,u.password,r.role_name from ssm_user AS u
+        JOIN ssm_role AS r ON u.role_id = r.role_id
         <where>
             <if test="userName!=null and userName!='' ">
                 and user_name like #{userName}

@@ -690,7 +690,10 @@ CREATE TABLE `ssm_role` (
 
 INSERT INTO `ssm`.`ssm_role`(`role_id`, `role_name`, `created_at`, `updated_at`, `delete_flag`, `deleted_at`) VALUES (1, '超级管理员', 1, 1, 0, NULL);
 INSERT INTO `ssm`.`ssm_role`(`role_id`, `role_name`, `created_at`, `updated_at`, `delete_flag`, `deleted_at`) VALUES (2, '录文章的', 1, 1, 0, NULL);
+INSERT INTO `ssm`.`ssm_role`(`role_id`, `role_name`, `created_at`, `updated_at`, `delete_flag`, `deleted_at`) VALUES (3, '管理员', 1, 1, 0, NULL);
 
+ALTER TABLE `ssm`.`ssm_user`
+ADD COLUMN `role_id` int(0) NULL COMMENT '角色ID' AFTER `role_name`;
 /*!40000 ALTER TABLE `ssm_user` ENABLE KEYS */;
 UNLOCK TABLES;
 

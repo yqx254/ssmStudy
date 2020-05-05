@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ssm.maven.core.entity.Menu;
+import com.ssm.maven.core.entity.Role;
 import com.ssm.maven.core.service.MenuService;
+import com.ssm.maven.core.service.RoleService;
 import com.ssm.maven.core.util.MD5Util;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -42,6 +44,8 @@ public class UserController {
     private UserService userService;
     @Resource
     private MenuService menuService;
+    @Resource
+    private RoleService roleService;
     private static final Logger log = Logger.getLogger(UserController.class);
 
     /**
@@ -136,11 +140,13 @@ public class UserController {
         }
         map.put("userName", StringUtil.formatLike(s_user.getUserName()));
         List<User> userList = userService.findUser(map);
+        List<Role> roleList = roleService.roleList(new HashMap<>());
         Long total = userService.getTotalUser(map);
         JSONObject result = new JSONObject();
         JSONArray jsonArray = JSONArray.fromObject(userList);
         result.put("rows", jsonArray);
         result.put("total", total);
+        result.put("roles",roleList);
         log.info("request: user/list , map: " + map.toString());
         ResponseUtil.write(response, result);
         return null;

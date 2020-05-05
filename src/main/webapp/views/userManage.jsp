@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -107,6 +108,7 @@
         <th field="cb" checkbox="true" align="center"></th>
         <th field="id" width="50" align="center">编号</th>
         <th field="userName" width="100" align="center">用户名</th>
+        <th field="roleName" width="100" align="center">角色</th>
     </tr>
     </thead>
 </table>
@@ -144,6 +146,18 @@
                 <td><input type="password" id="password" name="password"
                            class="easyui-validatebox" required="true"/>&nbsp;<font
                         color="red">*</font>
+                </td>
+            </tr>
+            <tr>
+                <td>角色：</td>
+                <td>
+                    <input id="roles" class="easyui-combobox" name="roles" editable="false">
+                    <c:forEach items="${result.roles}" var="r">
+                    <option value="${r.roleId}">
+                        ${r.roleName}
+                    </option>
+                    </c:forEach>
+                    </input>
                 </td>
             </tr>
         </table>

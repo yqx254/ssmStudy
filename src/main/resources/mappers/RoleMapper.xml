@@ -17,7 +17,7 @@
     </select>
 
     <select id="roleList" parameterType="Map" resultMap="roleResult">
-        SELECT * FROM ssm_role WHERE delete_flag = 0
+        SELECT role_id,role_name FROM ssm_role WHERE delete_flag = 0
         <where>
             <if test="start != null and size != null">
                 AND LIMIT #{start}, #{size}
