@@ -140,13 +140,11 @@ public class UserController {
         }
         map.put("userName", StringUtil.formatLike(s_user.getUserName()));
         List<User> userList = userService.findUser(map);
-        List<Role> roleList = roleService.roleList(new HashMap<>());
         Long total = userService.getTotalUser(map);
         JSONObject result = new JSONObject();
         JSONArray jsonArray = JSONArray.fromObject(userList);
         result.put("rows", jsonArray);
         result.put("total", total);
-        result.put("roles",roleList);
         log.info("request: user/list , map: " + map.toString());
         ResponseUtil.write(response, result);
         return null;

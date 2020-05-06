@@ -87,4 +87,10 @@ public class RoleController {
         ResponseUtil.write(response,JSONObject.fromObject(role));
         return null;
     }
+
+    @RequestMapping("/roleConfig")
+    public String getRoleConf(HttpServletResponse response) throws Exception{
+        ResponseUtil.write(response,JSONArray.fromObject(roleService.roleList(new HashMap<>(16))));
+        return null;
+    }
 }

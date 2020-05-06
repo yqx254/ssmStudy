@@ -73,4 +73,11 @@ public class RoleControllerTest {
                 .andDo(MockMvcResultHandlers.print());
     }
 
+    @Test
+    public void roleConfig() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders
+        .get("/role/roleConfig"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print());
+    }
 }

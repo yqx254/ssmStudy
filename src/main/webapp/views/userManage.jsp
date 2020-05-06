@@ -57,6 +57,7 @@
         function openUserAddDialog() {
             $("#dlg").dialog("open").dialog("setTitle", "添加用户信息");
             url = "${pageContext.request.contextPath}/user/save.do";
+            $("#roleId").combobox("select","");
         }
 
         function saveUser() {
@@ -86,7 +87,6 @@
             $("#password").val("******");
             url = "${pageContext.request.contextPath}/user/save.do?id=" + row.id;
         }
-
         function resetValue() {
             $("#userName").val("");
             $("#password").val("");
@@ -96,6 +96,16 @@
             $("#dlg").dialog("close");
             resetValue();
         }
+        $(function(){
+            $("#roleId").combobox({
+                url : "${pageContext.request.contextPath}/role/roleConfig.do",
+                method: "get",
+                valueField: "roleId",
+                textField: "roleName",
+                required : true,
+                editable : false,
+            });
+        })
     </script>
 </head>
 <body style="margin:1px;">
@@ -144,20 +154,15 @@
             <tr>
                 <td>密码：</td>
                 <td><input type="password" id="password" name="password"
-                           class="easyui-validatebox" required="true"/>&nbsp;<font
-                        color="red">*</font>
+                           class="easyui-validatebox" required="true"/>&nbsp;<span
+                        style="color: red; ">*</span>
                 </td>
             </tr>
             <tr>
                 <td>角色：</td>
                 <td>
-                    <input id="roles" class="easyui-combobox" name="roles" editable="false">
-                    <c:forEach items="${result.roles}" var="r">
-                    <option value="${r.roleId}">
-                        ${r.roleName}
-                    </option>
-                    </c:forEach>
-                    </input>
+                    <input id="roleId" class="easyui-combobox" name="roleId" editable="false" value="请选择角色">
+                    <span style="color: red; ">*</span>
                 </td>
             </tr>
         </table>

@@ -16,6 +16,7 @@ public class User {
     private Integer id; // 主键
     private String userName; // 用户姓名
     private String password; // 密码
+    private String roleId;
     private String roleName; //
 
     public Integer getId() {
@@ -50,4 +51,11 @@ public class User {
         this.roleName = roleName;
     }
 
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
+    }
+
+    public String getRoleId() {
+        return roleId;
+    }
 }
