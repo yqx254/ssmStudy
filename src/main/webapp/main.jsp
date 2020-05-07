@@ -58,7 +58,7 @@
             <td width="50%"></td>
             <td valign="bottom"
                 style="font-size: 20px;color:#8B8B8B;font-family: '楷体';"
-                align="right" width="50%"><font size="3">&nbsp;&nbsp;<strong>当前管理员：</strong>${currentUser.userName
+                align="right" width="50%"><font size="3">&nbsp;&nbsp;<strong>当前用户：</strong>${currentUser.userName
                     }</font>【管理员】
             </td>
         </tr>
@@ -105,12 +105,9 @@
             </c:forEach>
         </div>
     </c:forEach>
-        <div title="系统管理" data-options="iconCls:'icon-item'"
+        <div title="个人中心" data-options="iconCls:'icon-item'"
              style="padding:10px;border:none;">
-            <a href="javascript:openTab(' 管理员列表','userManage.jsp','icon-lxr')"
-               class="easyui-linkbutton"
-               data-options="plain:true,iconCls:'icon-lxr'" style="width: 150px;">
-                管理员列表</a><a href="javascript:logout()"
+        <a href="javascript:logout()"
                             class="easyui-linkbutton"
                             data-options="plain:true,iconCls:'icon-exit'"
                             style="width: 150px;">

@@ -34,7 +34,7 @@ public class UserControllerTest {
     public void menuTest() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders
                 .post("/user/login")
-                .param("userName","admin")
+                .param("userName","lala")
                 .param("password", MD5Util.MD5Encode("123456", "UTF-8")))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());

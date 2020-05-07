@@ -75,7 +75,7 @@ public class UserController {
             session.setAttribute("currentUser", resultUser);
             MDC.put("userName", user.getUserName());
             ModelAndView main = new ModelAndView("main");
-            List<Menu> menus = menuService.getMenuList();
+            List<Menu> menus = menuService.getMenuList(resultUser.getRoleId());
             log.info(menus.toString());
             session.setAttribute("menu",menus);
             main.setViewName("redirect:/main.jsp");

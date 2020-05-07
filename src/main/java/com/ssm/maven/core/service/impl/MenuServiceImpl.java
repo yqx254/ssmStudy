@@ -1,6 +1,7 @@
 package com.ssm.maven.core.service.impl;
 
 import com.ssm.maven.core.dao.MenuDao;
+import com.ssm.maven.core.dao.RoleMenuRelDao;
 import com.ssm.maven.core.entity.Menu;
 import com.ssm.maven.core.service.MenuService;
 import org.springframework.stereotype.Service;
@@ -17,9 +18,19 @@ public class MenuServiceImpl implements MenuService {
     @Resource
     private MenuDao menuDao;
 
+    @Resource
+    private RoleMenuRelDao roleMenuRelDao;
+
     @Override
-    public List<Menu> getMenuList() {
-        List<Menu> menuList =   menuDao.getMenuList();
+    public List<Menu> getMenuList(String roleId) {
+        int superAdmin = 1;
+        List<Menu> menuList;
+        if(Integer.parseInt(roleId) == superAdmin){
+            menuList =   menuDao.getMenuList();
+        }
+        else{
+            menuList = roleMenuRelDao.getRoleMenu(roleId);
+        }
         List<Menu> rootMenuList = new ArrayList<>(64);
         menuList.forEach(menu ->{
             if("0".equals(menu.getParentId())){

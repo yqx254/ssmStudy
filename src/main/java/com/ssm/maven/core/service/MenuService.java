@@ -8,6 +8,7 @@ public interface MenuService {
     /**
      * 获取菜单
      * @return 菜单对象列表
+     * @param roleId  角色ID
      */
-    List<Menu> getMenuList();
+    List<Menu> getMenuList(String roleId);
 }

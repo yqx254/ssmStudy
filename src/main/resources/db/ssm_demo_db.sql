@@ -677,6 +677,9 @@ INSERT INTO `ssm`.`ssm_menu`(`id`, `title`, `parent_id`, `page_url`, `icon`) VAL
 INSERT INTO `ssm`.`ssm_menu`(`id`, `title`, `parent_id`, `page_url`, `icon`) VALUES (8, '员工管理', 7, 'employeeManage.jsp', 'icon-wenzhang');
 INSERT INTO `ssm`.`ssm_menu`(`id`, `title`, `parent_id`, `page_url`, `icon`) VALUES (9, '客源管理', 0, 'userManage.jsp', '');
 INSERT INTO `ssm`.`ssm_menu`(`id`, `title`, `parent_id`, `page_url`, `icon`) VALUES (10, '客户信息', 9, 'customerManage.jsp', 'icon-shuben');
+INSERT INTO `ssm`.`ssm_menu`(`id`, `title`, `parent_id`, `page_url`, `icon`) VALUES (11, '系统管理', 0, '', 'icon-item');
+INSERT INTO `ssm`.`ssm_menu`(`id`, `title`, `parent_id`, `page_url`, `icon`) VALUES (12, '管理员列表', 11, 'userManage.jsp', 'icon-lxr');
+
 
 CREATE TABLE `ssm_role` (
                             `role_id` int NOT NULL AUTO_INCREMENT COMMENT '角色表主键',
@@ -695,6 +698,14 @@ INSERT INTO `ssm`.`ssm_role`(`role_id`, `role_name`, `created_at`, `updated_at`,
 ALTER TABLE `ssm`.`ssm_user`
 ADD COLUMN `role_id` int(0) NULL COMMENT '角色ID' AFTER `role_name`;
 /*!40000 ALTER TABLE `ssm_user` ENABLE KEYS */;
+
+CREATE TABLE `ssm_role_menu_rel` (
+  `rel_id` int NOT NULL COMMENT '关系表ID',
+  `role_id` int NOT NULL COMMENT '角色表ID',
+  `menu_id` int NOT NULL COMMENT '菜单表ID',
+  `delete_flag` tinyint DEFAULT 0 COMMENT '删除标记',
+  PRIMARY KEY (`rel_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='菜单节点和角色ID关联表';
 UNLOCK TABLES;
 
 
